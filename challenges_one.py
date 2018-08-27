@@ -12,7 +12,15 @@ def has_unique_chars(word):
 	True
 
     """
-    pass
+    chars = {}
+
+    for char in word:
+    	chars[char] = chars.get(char, 0) +1
+
+    for v in chars.values():
+    	if v > 1:
+    		return False
+    return True
 
 
 def does_string_contain_letter(letter, string):
@@ -42,11 +50,10 @@ def duplicate_letters(string1, string2):
 
 		>>> duplicate_letters("hello", "world")
 		True
-		>>> duplicate_letters("Ship", "plane")
+		>>> duplicate_letters("ship", "car")
 		False
 	"""
-	
-	
+	pass
 
 
 def duplicate_letters_2(string1, string2):
@@ -57,12 +64,29 @@ def duplicate_letters_2(string1, string2):
 	for example::
 
 		>>> duplicate_letters_2("banana", "grape")
-		["a"]
+		['a']
 		>>> duplicate_letters_2("raspberry", "cherry")
-		["e", "r" "y"]
+		['e', 'r', 'y']
+		>>> duplicate_letters_2("red", "book")
+		[]
 
 	"""
-	pass
+	#iterate over string1 and string2
+	#if char in string1 in string2
+	#add to an empty set
+	#return the set
+	#if no duplicates return empty list
+
+	duplicate_letters = set()
+
+	for char in string1:
+		if char in string2:
+			duplicate_letters.add(char)
+
+	if duplicate_letters:
+		return list(sorted(duplicate_letters))
+	return []
+	
 
 def is_palindrome(word):
 	"""Return True/False if this word is a palindrome.
