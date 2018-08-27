@@ -12,13 +12,24 @@ def has_unique_chars(word):
 	True
 
     """
-    chars = {}
+    #alternative 1
+    # chars = {}
+
+    # for char in word:
+    # 	chars[char] = chars.get(char, 0) +1
+
+    # for v in chars.values():
+    # 	if v > 1:
+    # 		return False
+    # return True
+
+    #alternative 2
+    unique_lst = []
 
     for char in word:
-    	chars[char] = chars.get(char, 0) +1
-
-    for v in chars.values():
-    	if v > 1:
+    	if char not in unique_lst:
+    		unique_lst.append(char)
+    	else:
     		return False
     return True
 
@@ -53,7 +64,11 @@ def duplicate_letters(string1, string2):
 		>>> duplicate_letters("ship", "car")
 		False
 	"""
-	pass
+	
+	for char in string1:
+		if char in string2:
+			return True
+	return False
 
 
 def duplicate_letters_2(string1, string2):
@@ -106,7 +121,27 @@ def is_palindrome(word):
 		True
 
 	"""
-	pass
+	#create two counters
+	#iterate over word if more than 1(return True if not)
+	#if first char matches the last char
+	#move first char count +1 and last char count to -1
+	#return True when iteration ends
+	#if chars don't match, return false
+
+	start = 0
+	end = -1
+
+	if len(word) < 2 :
+		return True
+
+	for index in word:
+		if word[start] == word[end]:
+			start += 1
+			end -= 1
+		else:
+			return False
+	return True
+
 
 def is_num_prime(input):
 	"""return true if number is prime, otherwise return false.
@@ -201,7 +236,19 @@ def is_pangram(sentence):
 	False
 	
 	"""
-	pass
+	alphabet_lst = set()
+
+	sentence = sentence.split(" ")
+
+	for word in sentence:
+		for char in word:
+			char = char.lower()
+			if char.isalpha(): #or in "abcdefghijklmnopqrstuvwxyz":
+				alphabet_lst.add(char)
+	
+	if len(alphabet_lst) == 26:
+		return True 
+	return False
 
 def print_digits(num):
 	"""Given int, print digits in reverse order, starting with the ones place.
@@ -217,6 +264,7 @@ def print_digits(num):
 	1
 	
 	"""
+	
 	pass
 
 def print_recursively(lst):
@@ -288,7 +336,12 @@ def sum_list(nums):
 	0
 	
 	"""
-	pass
+	if nums == []:
+		return 0
+
+	#print("index 0 = {}".format(nums[0]))
+
+	return nums[0] + sum_list(nums[1:])
 
 def has_balanced_brackets(phrase):
 	"""Does a given string have balanced pairs of brackets?
@@ -318,22 +371,20 @@ def has_balanced_brackets(phrase):
 	True
 	
 	"""
-	rights = "), ], }, >"
-	lefts = "(, [, {, <"
-	
 	counter = 0
+
+	phrase = phrase.replace(" ", "")
 
 	
 	for char in phrase:
-		if char in rights:
+		if char in "([{<":
 			counter += 1
-			if char in lefts:
+			if char in ")]}>":
 				counter -=1
 
-	if counter < 1:
+	if counter == 0:
 		return True
-	else:
-		return False
+	return False
 
 
 """"  Tree class and tree node class.  """
