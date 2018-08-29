@@ -212,7 +212,8 @@ def is_anagram_of_palindrome(word):
 	False
 	
 	"""
-	pass
+	pass	
+		
 
 def count_recursively(lst):
 	"""Return number of items in a list, using recursion.
@@ -224,7 +225,10 @@ def count_recursively(lst):
 	3
 	
 	"""
-	pass
+	if not lst:
+		return 0
+
+	return 1 + count_recursively(lst[1:])
 
 def is_pangram(sentence):
 	"""Given a string, return True if it is a pangram, False otherwise.
@@ -264,7 +268,6 @@ def print_digits(num):
 	1
 	
 	"""
-	
 	pass
 
 def print_recursively(lst):
