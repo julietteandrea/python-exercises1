@@ -1,6 +1,6 @@
 
 def has_unique_chars(word):
-    """Does word contain unique set of characters?
+	"""Does word contain unique set of characters?
 	
 	>>> has_unique_chars("Monday")
 	True
@@ -11,27 +11,27 @@ def has_unique_chars(word):
 	>>> has_unique_chars("")
 	True
 
-    """
-    #alternative 1
-    # chars = {}
+	"""
+	#alternative 1
+	# chars = {}
 
-    # for char in word:
-    # 	chars[char] = chars.get(char, 0) +1
+	# for char in word:
+	#   chars[char] = chars.get(char, 0) +1
 
-    # for v in chars.values():
-    # 	if v > 1:
-    # 		return False
-    # return True
+	# for v in chars.values():
+	#   if v > 1:
+	#       return False
+	# return True
 
-    #alternative 2
-    unique_lst = []
+	#alternative 2
+	unique_lst = []
 
-    for char in word:
-    	if char not in unique_lst:
-    		unique_lst.append(char)
-    	else:
-    		return False
-    return True
+	for char in word:
+		if char not in unique_lst:
+			unique_lst.append(char)
+		else:
+			return False
+	return True
 
 
 def does_string_contain_letter(letter, string):
@@ -212,7 +212,26 @@ def is_anagram_of_palindrome(word):
 	False
 	
 	"""
-	pass	
+	seen = {}
+
+	# Count each letter
+
+	for letter in word:
+		count = seen.get(letter, 0)
+		seen[letter] = count + 1
+		print("\ncount of letter, starting at 0 = {}".format(count))
+		print("the dictionary seen = {}".format(seen))
+	
+	# It's a palindrome if the number of odd-counts is either 0 or 1
+	seen_an_odd = False
+
+	for count in seen.values():
+		if count % 2 != 0:
+			if seen_an_odd:
+				return False
+			seen_an_odd = True
+			
+	return True
 		
 
 def count_recursively(lst):
@@ -378,7 +397,6 @@ def has_balanced_brackets(phrase):
 
 	phrase = phrase.replace(" ", "")
 
-	
 	for char in phrase:
 		if char in "([{<":
 			counter += 1
@@ -430,7 +448,24 @@ class Tree():
 			>>> tree.get_nodes("L")
 			[]
 		"""
-		pass
+		data_list = []
+		#start from the root
+		to_visit = [self.root]
+
+		while to_visit:
+			#assign the first pop node to current
+			current = to_visit.pop(0)
+			#if the current data matches the data we are looking for we will
+			#append it to data_list. if that current has children the while loop continues
+			#to loop over the to_visit list until it's done. Which then returns, if data was found.
+			#if not found, returns empty list
+			if current.data == data:
+				data_list.append(current)
+
+			to_visit.extend(current.children)
+
+		return data_list
+
 
 
 if __name__ == "__main__":
