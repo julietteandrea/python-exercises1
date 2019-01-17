@@ -45,14 +45,7 @@ def does_string_contain_letter(letter, string):
 		False
 	"""
 	
-	#iterate over string, and check if the letter is in the string. If it it
-	#return True if not, return False
-
-	for char in string:
-		if letter == char:
-			return True
-		else:
-			return False
+	return letter in string
 
 def duplicate_letters(string1, string2):
 	"""Determine whether there are duplicate letters in a string.
@@ -98,9 +91,7 @@ def duplicate_letters_2(string1, string2):
 		if char in string2:
 			duplicate_letters.add(char)
 
-	if duplicate_letters:
-		return list(sorted(duplicate_letters))
-	return []
+	return list(sorted(duplicate_letters))
 	
 
 def is_palindrome(word):
@@ -157,17 +148,19 @@ def is_num_prime(input):
 		False
 
 	"""
-	if input == 1 or input == 2:
-		return True
+	#if input == 1 or input == 2:
+	#	return True
 
-	div_num = 2
+	div = 2
 
-	while div_num < input:
-		if input % div_num == 0:
+	while div < input:
+		if input % div == 0:
 			return False
-		div_num += 1
+		else:
+			div += 1
 
 	return True
+
 
 
 def pig_latin(phrase):
